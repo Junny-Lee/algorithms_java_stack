@@ -23,27 +23,20 @@ class SLL{
     // when a pointer is to the RIGHT of an equal sign, we are READING it
 
     // add given node to the head, if it exists. return void
-    // list is empty?
-    // list already has nodes?
     addToFront(node) {
-        if (this.head){
-            node.next = this.head;
-            this.head = node;
-        } else {
-            this.head = node;
-        }
+        node.next = this.head; // set the new node's next to the head
+        this.head = node; // move the head to the new node
     }
 
     // create a new node with given data, add it to the head. return void
     addDataToFront(value) {
-        if (this.head){
-            this.head.value = value;
-        } else {
-            console.log("List is empty.");
-        }
+        var newNode = new Node(value); // creates a new node with the value
+        newNode.next = this.head; // set the new node to the head
+        this.head = newNode; // move the head to the new node
     }
 }
 
+// way we tested:
 // var testingSLL = new SLL();
 // testingSLL.addToFront(new Node(10));
 // console.log(testingSLL);
