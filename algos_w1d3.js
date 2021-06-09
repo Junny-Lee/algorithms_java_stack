@@ -15,7 +15,7 @@ class SLL {
     // traversal
     read() {
         var runner = this.head; // runner is a node
-        while (runner){
+        while (runner){ // while runner is not null 
             console.log(runner.data)
             runner = runner.next;
         }
@@ -23,16 +23,14 @@ class SLL {
 
     // find: return true / false if current list contains a data equal to value
     contains(value) {
-        var found = false;
         var runner = this.head;
         while (runner){
-            if (runner.data === value){ // == comparing memory locations & === 
-                found = true;
-                break;
+            if (runner.data === value){ // == comparing memory locations & === explicitly compare
+                return true
             }
             runner = runner.next;
         }
-        return found;
+        return false;
     }
 
     // Remove from front: remove and return the first node in the SLL
@@ -61,7 +59,7 @@ class SLL {
     addDataToFront(data) { // 10
         var newNode = new Node(data); // create a new node with the data
         newNode.next = this.head; // set the new node's next to the head
-        this.head = node; // move the head to the new node
+        this.head = newNode; // move the head to the new node
     }
 }
 
