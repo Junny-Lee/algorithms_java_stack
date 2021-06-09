@@ -1,4 +1,4 @@
-// Monday
+// Tuesday
 class Node{
     constructor(value) {
         this.value = value;
@@ -36,15 +36,6 @@ class SLL{
     }
 }
 
-// way we tested:
-// var testingSLL = new SLL();
-// testingSLL.addToFront(new Node(10));
-// console.log(testingSLL);
-// testingSLL.addToFront(new Node(20));
-// console.log(testingSLL);
-// testingSLL.addDataToFront(100);
-// console.log(testingSLL);
-
 // 1
 var n1 = new Node(11);
 var n2 = new Node(22);
@@ -71,3 +62,12 @@ myReadSLL.addToFront(new Node(100));
 myReadSLL.addToFront(new Node(200));
 myReadSLL.addDataToFront(500);
 console.log(myReadSLL);
+
+// way we tested:
+// var testingSLL = new SLL();
+// testingSLL.addToFront(new Node(10));
+// console.log(testingSLL);
+// testingSLL.addToFront(new Node(20));
+// console.log(testingSLL);
+// testingSLL.addDataToFront(100);
+// console.log(testingSLL);
