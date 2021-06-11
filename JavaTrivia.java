@@ -1,30 +1,22 @@
-// Java interview questions that TAs at Coding Dojo got
+public class JavaTrivia {
 
+    public void changeMyInt(int someInt){ // copy is made (because primitive)
+        someInt = someInt + 1; // someInt is changed in this function scope
+    }
 
-// 5
-int is primitive type 
-function doesn't return anything (void), so the variable dies
-after it's scope
+    public int changeMyInt2(int someInt){ // copy is made (because primitive)
+        someInt = someInt + 1;
+        return someInt;
+    }
 
-// 6 
-arrays are passed by reference, so the void function is changing it 
+    public int[] changeArr(int[] someArr){
+        someArr[1] = 99;
+        return someArr;
+    }
 
-// 7
+    public Integer changeMyInteger(Integer someInteger){ // copy is made (because primitive)
+        someInteger = someInteger + 1;
+        return someInteger;
+    }
 
-
-// 9
-String is a class (error: cannot find symbol string)
-
-// 10 
-not valid syntax
-in is python 
-
-// 12
-each character in JAVA gets translated to unicode values
-
-// 13
-
-// 14 
-method signatures can be different, but in this particular case, doesn't work becaus main
-
-// 15
+}
