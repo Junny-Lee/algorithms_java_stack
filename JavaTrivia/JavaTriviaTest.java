@@ -14,7 +14,9 @@ public class JavaTriviaTest {
         System.out.println(stringOne); // Hello
         System.out.println(stringTwo); // Hello goodbye
 
+
         // Q2: skip
+
 
         // Q3: 
         int i = 0;
@@ -24,11 +26,13 @@ public class JavaTriviaTest {
         i++; // 5
         i += 1; // 6
 
+
         // Q4:
         ArrayList<String> toDoList = new ArrayList<String>();
         toDoList.add("Do laundry");
         toDoList.add("Get milk");
         System.out.println(toDoList); // [Do laundry, Get milk]
+
 
         // Q5: this Q pertains to scope of variables & their functions 
         JavaTrivia jt = new JavaTrivia();
@@ -59,23 +63,40 @@ public class JavaTriviaTest {
 
         // Objects ==> come from classes 
         // Objects & Arrays == passed by reference
-
         // String, boolean, int, Integer, floats, doubles == passed by value 
 
 
-        // Q6:
-        
+        // Q6: String[] are arrays, so they are passed by reference
+        JavaTrivia jt2 = new JavaTrivia();
+        String[] arr = new String[1];
+        System.out.println(arr[0]); // null
+        jt2.changeMyArr(arr);
+        System.out.println(arr[0]); // foo
+
         // Q7:
-        
+        int[] numbers = {1,2,3,4};
+        for (int value : numbers){
+            value += 3;
+        }
+        System.out.println(Arrays.toString(numbers));
+
+        // moving on to OOP stuff
         // Q8:
-        
+        Rectangle r = new Rectangle(10,20);
+        r.perimeter();
+        r.area();
+
         // Q9:
         
+
         // Q10:
         
+
         // Q11:
         
+
         // Q12:
+
     }
 }
 
