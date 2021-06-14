@@ -1,5 +1,5 @@
 public class JavaTrivia {
-
+// 
     // pertains to #5
     public void changeMyInt(int someInt){ // copy is made (because primitive)
         someInt = someInt + 1; // someInt is changed in this function scope
