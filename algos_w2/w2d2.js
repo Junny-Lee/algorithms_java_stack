@@ -69,6 +69,8 @@ function readQueue(queue) {
         console.log(queue.peek());
         newQueue.enqueue(queue.dequeue());
     }
-    
+    while(!newQueue.isEmpty()){
+        queue.enqueue(newQueue.dequeue());
+    }
     return newQueue;
 }
