@@ -97,14 +97,53 @@ class Node {
 // using only one extra stack for storage, check if a given stack is sorted
 // return the stack back to it's original order when you are done
 // assume node.data are integers
-function isStackSorted(stack) {}
+function isStackSorted(stack) {
+    var tempStack = new slStack();
+    var sorted = true;
+
+    while (!stack.isEmpty()) {
+        var tempNode = stack.pop();
+        if (tempStack.isEmpty() || tempStack.peek().data <= temp.data) {
+            tempStack.push(tempNode);
+        } else {
+            sorted = false;
+            tempStack.push(tempNode);
+            break;
+        }
+    }
+
+    while (!tempStack.isEmpty()) {
+        stack.push(tempStack.pop());
+    }
+
+    return sorted;
+}
 
 // STACK - GREATER OF TWO STACKS
 // return the stack with the greater sum of numbers
 // return both stacks to their original order
 // assume node.data are integers
 // you may write helper methods to break this problem down into smaller steps
-function greaterOfTwoStacks(stack1, stack2) {}
+function greaterOfTwoStacks(stack1, stack2) {
+    return totalStack(stack1) >= totalStack(stack2) ? stack1 : stack2;
+}
+
+function totalStack(stack) {
+    var newStack = new slStack();
+    var total = 0;
+
+    while (!stack.isEmpty()) {
+        var tempNode = stack.pop();
+        total += tempNode.data;
+        newStack.push(tempNode);
+    }
+
+    while (!newStack.isEmpty()) {
+        stack.push(newStack.pop());
+    }
+
+    return total;
+}
 
 // QUEUE - IS PALINDROME
 // return true or false if the queue is a palindrome
