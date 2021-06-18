@@ -15,31 +15,52 @@
 class Node {
     constructor(data){
         this.data = data;
-        this.next = next;
+        this.next = null;
     }
 }
 
 class minStack {
     constructor(){
         this.top = null;
-        this.mins = []; // <-- huge hint, we don't just track a single min
+        this.mins = [];
     }
 
-    // add a node
-    // update the min if this new node is smaller than the min
-    push(node){};
+    push(node){
+        if (this.mins.length === 0 || node.data < this.getMin().data){
+            this.mins.push(node);
+        }
+        node.next = this.top;
+        this.top = node;
+    };
 
-    // remove a node
-    // also pop from this.mins if the popped node is the smallest
-    pop(){}
+    pop(){
+        if(this.top === null){
+            return null;
+        };
 
-    // return true false if stack is empty
-    isEmpty(){}
+        var popped = this.top;
+        this.top = this.top.next;
+        popped.next = null;
 
-    // peek at the top node
-    peek(){}
+        if(popped.data === this.getMin().data){
+            this.mins.pop();
+        }
 
-    // get the minimum value from the list
-    // how can we do this without looping??
-    getMin(){}
+        return popped;
+    }
+
+    isEmpty(){
+        return this.top === null;
+    }
+
+    peek(){
+        return this.top ? this.top : null;
+    }
+
+    getMin(){
+        if(this.mins.length === 0){
+            return null;
+        }
+        return this.mins[this.mins.length - 1];
+    }
 };
