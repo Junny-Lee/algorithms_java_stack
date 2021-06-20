@@ -107,7 +107,28 @@ class Node {
 
 // you may use stacks queues arrays or dictionaries as additional storage
 // you may create helper methods to break this challenge down into smaller parts
-function isPalindrome(queue) {}
+function isPalindrome(queue) {
+    let temp = new Queue();
+    let reverseString = ""; // d -> "abc"
+    let normalString = ""; // "abc" <- d
+
+    while (!queue.isEmpty()) {
+        let node = queue.dequeue();
+        reverseString = node.data + reverseString;
+        normalString += node.data;
+        temp.enqueue(node);
+    }
+
+    while (!temp.isEmpty()) {
+        queue.enqueue(temp.dequeue());
+    }
+
+    console.log(normalString);
+    console.log(reverseString);
+
+    return reverseString === normalString;
+}
+
 
 var myQueue = new Queue();
 myQueue.enqueue(new Node("r"));

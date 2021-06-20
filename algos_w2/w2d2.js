@@ -28,7 +28,7 @@ class Queue {
         if(this.isEmpty()) {
             console.log("Queue is empty");
         }   else if(this.front == this.back) {
-            var toBeReoved = this.front;
+            var toBeRemoved = this.front;
             this.front = null;
             this.back = null;
             return toBeRemoved;
