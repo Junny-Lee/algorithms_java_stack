@@ -20,7 +20,51 @@ class DLList {
     // target is the value of a node in the list
     // consider the edge case where you may have to move the head
     // consider the edge case where you do not find the target
-    prepend(target, node) {}
+    prepend(target, node) {
+        if (this.head !== null) { // Must have at least one node
+            var curNode = this.head;
+            if (curNode.data === target) { // Edge case: first node only
+                node.next = curNode; // Connect nodes
+                curNode.prev = node;
+                this.head = node; // Move this.head to new node
+                this.length++;
+            } else {
+                while (curNode.next !== null) {
+                    curNode = curNode.next; // Move to next node
+                    if (curNode.data === target) {
+                        // Link this new node to the others
+                        node.next = curNode;
+                        node.prev = curNode.prev;
+                        // Link other nodes to this new node
+                        curNode.prev.next = node;
+                        curNode.prev = node;
+                        this.length++;
+                        break; // Exit while loop assuming only before first instance of target
+                    }
+                }
+            }
+        }
+    }
+
+    prependClean(target, node) {
+        var runner = this.head; // set a runner
+        if(runner.data === target){
+            this.addHead(node);
+            return;
+        }
+        while (runner) { // loop
+            if (runner.data !== target) { // check runner data against the target
+                runner = runner.next;     // move forward if no match
+            } else {                      // else we found a match
+                node.next = runner;       // point the node at the matched runner
+                node.prev = runner.prev;  // point the node's prev to the matched runner's prev
+                node.prev.next = node;    // link previous node next
+                runner.prev = node;       // link runner to node
+                this.length++;            // length
+                return;
+            }
+        }
+    }
 
     // push to head
     addHead(node) {
