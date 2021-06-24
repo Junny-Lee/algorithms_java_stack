@@ -17,10 +17,38 @@ class DLList {
     // == Main Methods ==
 
     // return true or false if a node exists with data === val
-    exists(val) {}
+    exists(val) {
+        var forwardRunner = this.head;
+        var backwardRunner = this.tail;
+        var count = Math.ceil(this.length / 2);
+        while (count){
+            if (forwardRunner.data === val || backwardRunner.data == val) {
+                return true;
+            }
+            forwardRunner = forwardRunner.next;
+            backwardRunner = backwardRunner.prev;
+            count--;
+        }
+        return false;
+    }
 
     // reverse a doubly linked list in place
-    reverse() {}
+    reverse() {
+        var runner = this.head;
+        if (runner === null) return;
+        if (runner === this.tail) return;
+
+        while (runner) {
+            var temp = runner.next;
+            runner.next = runner.prev;
+            runner.prev = temp;
+            runner = temp;
+        }
+
+        var temp = this.head;
+        this.head = this.tail;
+        this.tail = temp;
+    }
 
     // remove and return the first node with data === val, if it exists
     removeVal(val) {
