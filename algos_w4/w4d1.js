@@ -18,60 +18,75 @@ class BST {
         return this.root === null;
     };
 
+    //  new Node(17);
     insert(node, current) {
         // default current to root if no current exists
         if (current === undefined) {
             current = this.root;
         };
 
-        // root is null then node will
-        // be added to the tree and made root.
-        if (this.root === null)
+        // if empty tree, new node becomes root
+        if (current === null) {
             this.root = node;
-        else {
-            // if the data is less than the node
-            // data moves left of the tree
-            if(node.val < current.val)
-            {
-                // if left is null, insert node here
-                if(current.left === null)
-                    current.left = node;
-                else
-                    // if left is not null, recur until
-                    // null is found
-                    this.insert(node, current.left);
+            return;
+        };
+
+        if (current.val > node.val) { // go left
+            // check if null and insert
+            if (current.left === null) { // <-- base case for inserting left
+                current.left = node;
+                return;
+            } else {
+                // otherwise recurse left
+                return this.insert(node, current.left); // <-- move current to current.left
             }
-            // if the data is more than the node
-            // data moves right of the tree
-            else
-            {
-                // if right is null, insert node here
-                if(current.right === null)
-                    current.right = node;
-                else
-                    // if right is not null, recur until
-                    // null is found
-                    this.insertNode(node, current.right);
+        } else if (current.val < node.val) { // go right
+            // check if null and insert
+            if (current.right === null) { // <-- base case for inserting left
+                current.right = node;
+                return;
+            } else {
+                // otherwise recurse right
+                return this.insert(node, current.right);
             }
         }
     };
 
     // iterative
     getSmallestFromSubtree() {
-        let current = this.root;
-        while (current.left !== null)  {
-            current = current.left;
+        // create runner
+        var runner = this.root;
+
+        // return if root is null
+        if (!runner) return;
+
+        // loop to the left if it exists
+        while (runner.left) {
+            runner = runner.left;
         }
-        return current;
+        // when the while ends, return runner.val
+        return runner.val;
     }
 
     // recursive
     getLargestFromSubtree(current) {
-        if (current.right === null) {
-            return current;
-        } else {
-            return this.getLargestFromSubtree(current.right);
+        // if no tree, tree is root
+        if (current === undefined) {
+            current = this.root;
         }
+
+        // if tree becomes null, return null
+        if (current === null) {
+            return null;
+        }
+
+        // if there is no further nodes, return tree
+        if (current.right === null) {
+            return current.val;
+        }
+
+        // else recurse to the right and try again
+        return this.getLargestFromSubtree(current.right);
     }
 
 };
