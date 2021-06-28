@@ -181,6 +181,10 @@ class DLList {
         return this.head === null;
     }
 
+    getLength() {
+        return this.length;
+    }
+    
     // == Bonus Methods, just inverted versions of the first set ==
 
     // push to tail
