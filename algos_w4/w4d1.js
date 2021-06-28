@@ -18,13 +18,61 @@ class BST {
         return this.root === null;
     };
 
-    insert(node, current) {};
+    insert(node, current) {
+        // default current to root if no current exists
+        if (current === undefined) {
+            current = this.root;
+        };
+
+        // root is null then node will
+        // be added to the tree and made root.
+        if (this.root === null)
+            this.root = node;
+        else {
+            // if the data is less than the node
+            // data moves left of the tree
+            if(node.val < current.val)
+            {
+                // if left is null, insert node here
+                if(current.left === null)
+                    current.left = node;
+                else
+                    // if left is not null, recur until
+                    // null is found
+                    this.insert(node, current.left);
+            }
+            // if the data is more than the node
+            // data moves right of the tree
+            else
+            {
+                // if right is null, insert node here
+                if(current.right === null)
+                    current.right = node;
+                else
+                    // if right is not null, recur until
+                    // null is found
+                    this.insertNode(node, current.right);
+            }
+        }
+    };
 
     // iterative
-    getSmallestFromSubtree() {}
+    getSmallestFromSubtree() {
+        let current = this.root;
+        while (current.left !== null)  {
+            current = current.left;
+        }
+        return current;
+    }
 
     // recursive
-    getLargestFromSubtree(current) {}
+    getLargestFromSubtree(current) {
+        if (current.right === null) {
+            return current;
+        } else {
+            return this.getLargestFromSubtree(current.right);
+        }
+    }
 
 };
 
