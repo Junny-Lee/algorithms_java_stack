@@ -22,10 +22,64 @@ class BST {
 
     // return true or false is val exists within the current tree
     // if current is undefined, current = this.root
-    find(val, current) {  }
+    find(val, current) {
+        if (current === undefined) {
+            current = this.root;
+        }
+
+        // BASE CASE
+        // if current is null, return false - up the call stack
+        if (current == null) {
+            return false;
+        }
+
+        // if we get here, current is not null; check val vs val
+        // if equal return true - up the call stack
+        if (current.val === val) {
+            return true;
+        }
+
+        // otherwise we need to recurse! - call the function again from the beginning 
+        
+        // decide which direction
+        if (current.val > val) {
+            current = current.left; // move current
+        } else {
+            current = current.right; // move current
+        }
+
+        // recurse now that current is moved, return the result
+        return this.find(val, current) // true / false up the call stack.
+
+      }
 
     // remove and return the smallest node of a given tree
-    removeSmallest(current) {  }
+    removeSmallest(current) { 
+        if (current === undefined) {
+            current = this.root;
+        }
+
+        // first iteration possibly move the root
+        if (current.left === null) {
+            this.root = current.right;
+            current.right = null;
+            return current;
+        }
+
+        // BASE CASE
+
+        // look ahead
+        if (current.left && (current.left.left === null)) {
+            // temp var to pointer
+            var smallest = current.left;
+            current.left = smallest.right;
+            smallest.right = null;
+            return smallest;
+        }
+
+        // otherwise recurse - re-call the function 
+        return this.removeSmallest(current.left);
+     }
 
     insert(node, current) {
         // default current to root if no current exists
