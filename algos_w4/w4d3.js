@@ -14,6 +14,10 @@ class BST {
         this.root = null;
     }
 
+    // * delete
+    // size
+    // height
+
     /*
                       root
                   <-- 25 -->
@@ -29,7 +33,7 @@ class BST {
     // Preorder (DFS - Depth First Search)
     // (Root / Parent, Left, Right)
     // 25, 15, 10, 4, 12, 22, 18, 50, 35, 31, 44, 70, 66, 90
-    printPreorder(current) {
+    printPreorder(current, arr=[]) {
         if (current === undefined) {
             current = this.root;
         }
@@ -37,26 +41,73 @@ class BST {
         if (current) {
             // read everything, then recurse
             console.log(current.val);
-            this.printPreorder(current.left);
-            this.printPreorder(current.right);
+            arr.push(current.val);
+            this.printPreorder(current.left, arr);
+            this.printPreorder(current.right, arr);
         }
+
+        return arr;
     }
 
     // Inorder (DFS)
     // (Left, Root / Parent, Right)
     // 4, 10, 12, 15, 18, 22, 31, 35, 44, 50, 66, 70, 90
-    printInorder(current) {}
+    printInorder(current) {
+        if (current === undefined) {
+            current = this.root;
+        }
+
+        if (current) {
+            // recurse left, then read, then recurse right
+            this.printInorder(current.left);
+            console.log(current.val);
+            this.printInorder(current.right);
+        }
+    }
 
     // Postorder (DFS)
     // (Left, Right, Root / Parent)
     // 4, 12, 10, 18, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25
-    printPostorder(current) {}
+    printPostorder(current) {
+        if (current === undefined) {
+            current = this.root;
+        }
+
+        if (current) {
+            // recurse in both directions, then read
+            this.printPostorder(current.left);
+            this.printPostorder(current.right);
+            console.log(current.val);
+        }
+    }
 
     // Levelorder (BFS - Breath first search)
     // Row-by-row left-right top-down
     // 25, 15, 50, 10, 22, 35, 70, 4, 12, 18, 31, 44, 66, 90
-    printLevelorder(current) {}
+    printLevelorder(current) {
+        if (current === undefined) {
+            current = this.root;
+        };
 
+        var queue = []; // "queue"
+
+        if (current) {
+            queue.push(current);
+        }
+
+        while (queue.length > 0) {
+            var dequeuedNode = queue.shift(); // should probably import our actual queue
+            console.log(dequeuedNode.val);
+
+            if (dequeuedNode.left) {
+                queue.push(dequeuedNode.left);
+            }
+
+            if (dequeuedNode.right) {
+                queue.push(dequeuedNode.right);
+            }
+        }
+    }
 
     isEmpty() {
         return this.root === null;
