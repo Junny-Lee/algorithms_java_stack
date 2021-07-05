@@ -305,4 +305,4 @@ myBST.insert(new BSTNode(10));
 myBST.insert(new BSTNode(5));
 myBST.insert(new BSTNode(20));
 console.log(myBST.getSmallestFromSubtree()); // 5
-console.log(myBST.getLargestFromSubtree()); // 20
+console.log(myBST.getLargestFromSubtree()); // expected 20 
